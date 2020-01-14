@@ -9,7 +9,7 @@ let options       = null;
 let redisclient   = null;
 
 const retryStrategy = function(params) {
-  if (params.error.code === 'ECONNREFUSED') {
+  if (_.get(params, 'error.code') === 'ECONNREFUSED') {
     logger.error('Redis connection refused on host ' + options.host + ':' + options.port);
     return params.error;
   }
